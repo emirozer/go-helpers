@@ -9,9 +9,9 @@ import (
 	"time"
 )
 
-//AllUniqueStr will return a bool value based on if the string contains
+//AllUniqueWord will return a bool value based on if the word contains
 //unique characters or not.
-func AllUniqueStr(s string) bool {
+func AllUniqueWord(s string) bool {
 	strSlice := strings.Split(s, "")
 	resultSl := make(map[string]int)
 
