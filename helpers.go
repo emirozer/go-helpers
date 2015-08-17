@@ -124,8 +124,8 @@ func DiffSlices(X, Y []int) []int {
 	return ret
 }
 
-//MD5 encription
-func MD5(cad string) string {
+//SHA1hash calculates a sha1 given a str
+func SHA1hash(cad string) string {
 	hash := sha1.New()
 	hash.Write([]byte(cad))
 	return hex.EncodeToString(hash.Sum(nil))
