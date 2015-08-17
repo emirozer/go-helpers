@@ -2,6 +2,8 @@ package helpers
 
 import (
 	"crypto/rand"
+	"crypto/sha1"
+	"encoding/hex"
 	"fmt"
 	rnd "math/rand"
 	"reflect"
@@ -120,4 +122,11 @@ func DiffSlices(X, Y []int) []int {
 	}
 
 	return ret
+}
+
+//MD5 encription
+func MD5(cad string) string {
+	hash := sha1.New()
+	hash.Write([]byte(cad))
+	return hex.EncodeToString(hash.Sum(nil))
 }
