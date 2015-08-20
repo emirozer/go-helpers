@@ -70,6 +70,16 @@ func Test_DiffSlices(t *testing.T) {
 	}
 }
 
+// Tests for the FileExists function
+func Test_FileExists(t *testing.T) {
+	if found := FileExists("./helpers.go"); !found {
+		t.Errorf("Expected result: true, got %t instead\n", found)
+	}
+	if found := FileExists("./non_existent_file.go"); found {
+		t.Errorf("Expected result: true, got %t instead\n", found)
+	}
+}
+
 // --- --- --- Benchmarks
 
 // Benchmark for the ReverseStr function
