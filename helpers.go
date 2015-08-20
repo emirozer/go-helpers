@@ -12,17 +12,14 @@ import (
 	"time"
 )
 
-//AllUniqueWord will return a bool value based on if the word contains
-//unique characters or not.
-func AllUniqueWord(s string) bool {
-	strSlice := strings.Split(s, "")
-	resultSl := make(map[string]int)
-
-	for _, v := range strSlice {
-		resultSl[v]++
+// AllUniqueWord will return a bool value based on if the word contains
+// unique characters or not.
+func AllUniqueWord(str string) bool {
+	result := make(map[rune]int)
+	for _, v := range str {
+		result[v]++
 	}
-
-	for _, v := range resultSl {
+	for _, v := range result {
 		if v > 1 {
 			return false
 		}
