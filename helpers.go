@@ -104,15 +104,17 @@ func RandInt(min int, max int) int {
 	return min + rnd.Intn(max-min)
 }
 
-//DiffSlices takes two integer slices and returns the diff between them
-func DiffSlices(X, Y []int) []int {
+// DiffSlices takes two integer slices and returns the diff between them
+// e.g. DiffSlices(X, Y) will return the elements that are only in X
+// If an integer is present in both slices but not the same number of time,
+// it will be reflected in the result
+func DiffSlices(X, Y []int) (ret []int) {
 	m := make(map[int]int)
 
 	for _, y := range Y {
 		m[y]++
 	}
 
-	var ret []int
 	for _, x := range X {
 		if m[x] > 0 {
 			m[x]--

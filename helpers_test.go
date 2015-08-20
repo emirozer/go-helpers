@@ -12,8 +12,10 @@ const (
 )
 
 var (
-	sliceIntX = []int{46, 77, 89, 43, 3, 33, 0, 10, 95, 83, 16, 1, 9, 82, 48, 36, 2, 59, 45, 12}
-	sliceIntY = []int{5, 93, 54, 10, 48, 66, 97, 46, 11, 8, 64, 37, 39, 89, 71, 40, 19, 63, 87, 65}
+	sliceIntX     = []int{46, 77, 89, 43, 3, 33, 0, 10, 95}
+	sliceIntY     = []int{5, 93, 54, 10, 48, 66, 97, 95, 46, 11, 8, 56, 72}
+	sliceIntDiffX = []int{77, 89, 43, 3, 33, 0}
+	sliceIntDiffY = []int{5, 93, 54, 48, 66, 97, 11, 8, 56, 72}
 )
 
 // --- --- --- Tests
@@ -39,6 +41,32 @@ func Test_StringInSlice(t *testing.T) {
 func Test_SHA1hash(t *testing.T) {
 	if result := SHA1hash(text); result != textSHA1 {
 		t.Errorf("Expected result: %q, got %q instead\n", textSHA1, result)
+	}
+}
+
+// Tests for the DiffSlices function
+func Test_DiffSlices(t *testing.T) {
+	result := DiffSlices(sliceIntX, sliceIntY)
+	if len(sliceIntDiffX) != len(result) {
+		t.Logf("Result size (%d) is different from the expected result size (%d)\n", len(sliceIntDiffX), len(result))
+		t.FailNow()
+	}
+	for i, value := range result {
+		if value != sliceIntDiffX[i] {
+			t.Logf("Expected result at index %d: \"%d\", got \"%d\" instead\n", i, sliceIntDiffX[i], value)
+			t.FailNow()
+		}
+	}
+	result = DiffSlices(sliceIntY, sliceIntX)
+	if len(sliceIntDiffY) != len(result) {
+		t.Logf("Result size (%d) is different from the expected result size (%d)\n", len(sliceIntDiffY), len(result))
+		t.FailNow()
+	}
+	for i, value := range result {
+		if value != sliceIntDiffY[i] {
+			t.Logf("Expected result at index %d: \"%d\", got \"%d\" instead\n", i, sliceIntDiffY[i], value)
+			t.FailNow()
+		}
 	}
 }
 
