@@ -27,12 +27,14 @@ func AllUniqueWord(str string) bool {
 	return true
 }
 
-//ReverseStr returns the string reversed
+// ReverseStr returns the string reversed rune-wise left to right
+// Source: https://github.com/golang/example/tree/master/stringutil
 func ReverseStr(s string) (result string) {
-	for _, v := range s {
-		result = string(v) + result
+	r := []rune(s)
+	for i, j := 0, len(r)-1; i < len(r)/2; i, j = i+1, j-1 {
+		r[i], r[j] = r[j], r[i]
 	}
-	return
+	return string(r)
 }
 
 //StrPermutation checks if two strings has the same elements in the same amount
