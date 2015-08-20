@@ -7,8 +7,10 @@ import (
 )
 
 const (
-	text     = "A collection of helper functions about anything and everything"
-	textSHA1 = "037b993cade2a9493c8ac2f9766c6ec5889311f5"
+	text              = "A collection of helper functions     about anything   and  everything"
+	textSHA1          = "e181303567270f6ee37444a21e568039d88b2267"
+	separator         = "%20"
+	textWithSeparator = "A%20collection%20of%20helper%20functions%20about%20anything%20and%20everything"
 )
 
 var (
@@ -80,6 +82,13 @@ func Test_FileExists(t *testing.T) {
 	}
 }
 
+// Tests for the ReplaceSpacesWSymb function
+func Test_ReplaceSpacesWSymb(t *testing.T) {
+	if result := ReplaceSpacesWSymb(text, separator); result != textWithSeparator {
+		t.Errorf("Expected result: %q, got %q instead\n", textWithSeparator, result)
+	}
+}
+
 // --- --- --- Benchmarks
 
 // Benchmark for the ReverseStr function
@@ -122,6 +131,14 @@ func Benchmark_SHA1hash(b *testing.B) {
 func Benchmark_DiffSlices(b *testing.B) {
 	for n := 0; n < b.N; n++ {
 		DiffSlices(sliceIntX, sliceIntY)
+	}
+	b.StopTimer()
+}
+
+// Benchmark for the ReplaceSpacesWSymb function
+func Benchmark_ReplaceSpacesWSymb(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		ReplaceSpacesWSymb(text, separator)
 	}
 	b.StopTimer()
 }
