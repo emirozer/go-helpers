@@ -137,3 +137,13 @@ func FileExists(name string) bool {
 	_, err := os.Stat(name)
 	return !os.IsNotExist(err)
 }
+
+// StringInSlice verifies if a string is present in a slice
+func StringInSlice(str string, slice []string) bool {
+	for _, item := range slice {
+		if item == str {
+			return true
+		}
+	}
+	return false
+}
