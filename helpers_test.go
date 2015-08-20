@@ -89,6 +89,16 @@ func Test_ReplaceSpacesWSymb(t *testing.T) {
 	}
 }
 
+// Tests for the StrPermutation function
+func Test_StrPermutation(t *testing.T) {
+	if result := StrPermutation(text, text); !result {
+		t.Errorf("Expected result: true, got %t instead\n", result)
+	}
+	if result := StrPermutation(text, text+"some more text"); result {
+		t.Errorf("Expected result: false, got %t instead\n", result)
+	}
+}
+
 // --- --- --- Benchmarks
 
 // Benchmark for the ReverseStr function
@@ -139,6 +149,14 @@ func Benchmark_DiffSlices(b *testing.B) {
 func Benchmark_ReplaceSpacesWSymb(b *testing.B) {
 	for n := 0; n < b.N; n++ {
 		ReplaceSpacesWSymb(text, separator)
+	}
+	b.StopTimer()
+}
+
+// Benchmark for the StrPermutation function
+func Benchmark_StrPermutation(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		StrPermutation(text, text)
 	}
 	b.StopTimer()
 }
