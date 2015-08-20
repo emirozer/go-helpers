@@ -37,28 +37,18 @@ func ReverseStr(s string) (result string) {
 	return string(r)
 }
 
-//StrPermutation checks if two strings has the same elements in the same amount
+//StrPermutation checks if two strings have the same elements in the same amount
 func StrPermutation(a string, b string) bool {
-	ma := make(map[string]int)
-	mb := make(map[string]int)
-	aSl := strings.Split(a, "")
-	bSl := strings.Split(b, "")
+	ma := make(map[rune]int)
+	mb := make(map[rune]int)
 
-	for _, v := range aSl {
+	for _, v := range a {
 		ma[v]++
 	}
-	for _, v := range bSl {
+	for _, v := range b {
 		mb[v]++
 	}
-
-	eq := reflect.DeepEqual(ma, mb)
-
-	if eq {
-		return true
-	}
-
-	return false
-
+	return reflect.DeepEqual(ma, mb)
 }
 
 // ReplaceSpacesWSymb expects two strings, first arg being the string itself
