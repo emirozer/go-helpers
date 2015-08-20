@@ -124,11 +124,9 @@ func DiffSlices(X, Y []int) []int {
 	return ret
 }
 
-//SHA1hash calculates a sha1 given a str
 func SHA1hash(cad string) string {
-	hash := sha1.New()
-	hash.Write([]byte(cad))
-	return hex.EncodeToString(hash.Sum(nil))
+	data := sha1.Sum([]byte(cad))
+	return hex.EncodeToString(data[:])
 }
 
 //FileExists verifies if a filepath exists
