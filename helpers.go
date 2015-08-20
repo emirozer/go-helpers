@@ -124,6 +124,7 @@ func DiffSlices(X, Y []int) []int {
 	return ret
 }
 
+// SHA1hash calculates a SHA1 given a string
 func SHA1hash(cad string) string {
 	data := sha1.Sum([]byte(cad))
 	return hex.EncodeToString(data[:])
