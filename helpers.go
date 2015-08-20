@@ -61,16 +61,11 @@ func StrPermutation(a string, b string) bool {
 
 }
 
-//ReplaceSpacesWSymb expects two strings, first arg being the string itself
-//Second argument is the symbol to replace spaces
-//E.G: s := "emir ozer" symb := "%20"  / Result will be "emir%20ozer"
+// ReplaceSpacesWSymb expects two strings, first arg being the string itself
+// Second argument is the symbol to replace spaces
+// e.g. s := "emir ozer" symb := "%20"  / Result will be "emir%20ozer"
 func ReplaceSpacesWSymb(s string, symb string) (result string) {
-	sp := strings.Fields(s)
-	var tSp string
-	for _, v := range sp {
-		tSp += v + symb
-	}
-	return tSp[:len(tSp)-len(symb)]
+	return strings.Join(strings.Fields(s), symb)
 }
 
 //PseudoUUID generates a uuid like string
