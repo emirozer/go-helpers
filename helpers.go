@@ -12,8 +12,8 @@ import (
 	"time"
 )
 
-// AllUniqueWord will return a bool value based on if the word contains
-// unique characters or not.
+// AllUniqueWord will return a bool value based on
+// the string containing only unique characters or not.
 func AllUniqueWord(str string) bool {
 	result := make(map[rune]int)
 	for _, v := range str {
@@ -37,7 +37,7 @@ func ReverseStr(s string) (result string) {
 	return string(r)
 }
 
-//StrPermutation checks if two strings have the same elements in the same amount
+// StrPermutation checks if two strings have the same characters in the same amount
 func StrPermutation(a string, b string) bool {
 	ma := make(map[rune]int)
 	mb := make(map[rune]int)
@@ -60,7 +60,6 @@ func ReplaceSpacesWSymb(s string, symb string) (result string) {
 
 //PseudoUUID generates a uuid like string
 func PseudoUUID() (uuid string) {
-
 	b := make([]byte, 16)
 	_, err := rand.Read(b)
 	if err != nil {
@@ -73,17 +72,22 @@ func PseudoUUID() (uuid string) {
 	return
 }
 
-//RandomString gets the desired length and returns a random string
+// RandomString returns a random string of size l
+// Source: https://stackoverflow.com/questions/22892120/how-to-generate-a-random-string-of-a-fixed-length-in-golang
 func RandomString(l int) string {
+	const (
+		letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+		size    = int64(len(letters))
+	)
 	rnd.Seed(time.Now().UnixNano())
 	bytes := make([]byte, l)
-	for i := 0; i < l; i++ {
-		bytes[i] = byte(RandInt(65, 90))
+	for i := range bytes {
+		bytes[i] = letters[rnd.Int63()%size]
 	}
 	return string(bytes)
 }
 
-//RandInt returns a random integer between the min and max you set
+// RandInt returns a random integer between the min and max you set
 func RandInt(min int, max int) int {
 	rnd.Seed(time.Now().UnixNano())
 	return min + rnd.Intn(max-min)
