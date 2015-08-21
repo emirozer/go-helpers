@@ -7,10 +7,13 @@ import (
 )
 
 const (
+	separator         = "%20"
 	text              = "A collection of helper functions     about anything   and  everything"
 	textSHA1          = "e181303567270f6ee37444a21e568039d88b2267"
-	separator         = "%20"
 	textWithSeparator = "A%20collection%20of%20helper%20functions%20about%20anything%20and%20everything"
+	textReversed      = "gnihtyreve  dna   gnihtyna tuoba     snoitcnuf repleh fo noitcelloc A"
+	uniqueWord        = "abcdef ghijklmn"
+	notUniqueWord     = "abcdef ghijkklmn"
 )
 
 var (
@@ -22,29 +25,60 @@ var (
 
 // --- --- --- Tests
 
-// Tests for the StringInSlice function
-func Test_StringInSlice(t *testing.T) {
-	slice := strings.Split(text, " ")
-	in := "helper"
-	notIn := "potato"
-
+// Tests for the AllUniqueWord function
+func Test_AllUniqueWord(t *testing.T) {
 	// Should return true
-	if result := StringInSlice(in, slice); !result {
+	if result := AllUniqueWord(uniqueWord); !result {
 		t.Errorf("Expected result: true, got %t instead\n", result)
 	}
-
 	// Should return false
-	if result := StringInSlice(notIn, slice); result {
+	if result := AllUniqueWord(notUniqueWord); result {
 		t.Errorf("Expected result: false, got %t instead\n", result)
 	}
 }
 
-// Tests for the SHA1hash function
-func Test_SHA1hash(t *testing.T) {
-	if result := SHA1hash(text); result != textSHA1 {
-		t.Errorf("Expected result: %q, got %q instead\n", textSHA1, result)
+// Tests for the ReverseStr function
+func Test_ReverseStr(t *testing.T) {
+	if result := ReverseStr(text); result != textReversed {
+		t.Errorf("Expected result: %q, got %q instead\n", textReversed, result)
 	}
 }
+
+// Tests for the StrPermutation function
+func Test_StrPermutation(t *testing.T) {
+	// Should return true
+	if result := StrPermutation(text, text); !result {
+		t.Errorf("Expected result: true, got %t instead\n", result)
+	}
+	// Should return false
+	if result := StrPermutation(text, text+"some more text"); result {
+		t.Errorf("Expected result: false, got %t instead\n", result)
+	}
+}
+
+// Tests for the ReplaceSpacesWSymb function
+func Test_ReplaceSpacesWSymb(t *testing.T) {
+	if result := ReplaceSpacesWSymb(text, separator); result != textWithSeparator {
+		t.Errorf("Expected result: %q, got %q instead\n", textWithSeparator, result)
+	}
+}
+
+// TODO
+// func Test_PseudoUUID(t *testing.T) {}
+
+func Test_RandomString(t *testing.T) {
+	size := 50
+	var result string
+	if result = RandomString(size); len(result) != size {
+		t.Errorf("Expected result size: %d, got %d instead (result: %q)\n", size, len(result), result)
+	}
+	if RandomString(size) == result {
+		t.Error("The strings returned are not random, got two time the same one\n")
+	}
+}
+
+// TODO
+// func Test_RandInt(t *testing.T) {}
 
 // Tests for the DiffSlices function
 func Test_DiffSlices(t *testing.T) {
@@ -72,6 +106,13 @@ func Test_DiffSlices(t *testing.T) {
 	}
 }
 
+// Tests for the SHA1hash function
+func Test_SHA1hash(t *testing.T) {
+	if result := SHA1hash(text); result != textSHA1 {
+		t.Errorf("Expected result: %q, got %q instead\n", textSHA1, result)
+	}
+}
+
 // Tests for the FileExists function
 func Test_FileExists(t *testing.T) {
 	if found := FileExists("./helpers.go"); !found {
@@ -82,19 +123,19 @@ func Test_FileExists(t *testing.T) {
 	}
 }
 
-// Tests for the ReplaceSpacesWSymb function
-func Test_ReplaceSpacesWSymb(t *testing.T) {
-	if result := ReplaceSpacesWSymb(text, separator); result != textWithSeparator {
-		t.Errorf("Expected result: %q, got %q instead\n", textWithSeparator, result)
-	}
-}
+// Tests for the StringInSlice function
+func Test_StringInSlice(t *testing.T) {
+	slice := strings.Split(text, " ")
+	in := "helper"
+	notIn := "potato"
 
-// Tests for the StrPermutation function
-func Test_StrPermutation(t *testing.T) {
-	if result := StrPermutation(text, text); !result {
+	// Should return true
+	if result := StringInSlice(in, slice); !result {
 		t.Errorf("Expected result: true, got %t instead\n", result)
 	}
-	if result := StrPermutation(text, text+"some more text"); result {
+
+	// Should return false
+	if result := StringInSlice(notIn, slice); result {
 		t.Errorf("Expected result: false, got %t instead\n", result)
 	}
 }
@@ -157,6 +198,14 @@ func Benchmark_ReplaceSpacesWSymb(b *testing.B) {
 func Benchmark_StrPermutation(b *testing.B) {
 	for n := 0; n < b.N; n++ {
 		StrPermutation(text, text)
+	}
+	b.StopTimer()
+}
+
+// Benchmark for the StrPermutation function
+func Benchmark_RandomString(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		RandomString(50)
 	}
 	b.StopTimer()
 }
