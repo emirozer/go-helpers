@@ -1,0 +1,9 @@
+sudo: false
+language: go
+go: go1.4
+script:
+  - go test -v
+  
+branches:
+  only:
+    - master
