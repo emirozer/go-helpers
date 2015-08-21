@@ -2,14 +2,16 @@ sudo: false
 
 language: go
 
-go: go1.5
+go:
+  - 1.4
+  - 1.5
 
 script:
   - go test -v
-            
+
 notifications:
   email: false
-  
+
 branches:
   only:
     - master
