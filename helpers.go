@@ -12,6 +12,7 @@ import (
 	"strings"
 	"time"
 	"unicode"
+	"regexp"
 )
 
 // AllUniqueWord will return a bool value based on
@@ -144,6 +145,21 @@ func UpperCaseFirst(s string) string {
 	phrase := []rune(s)
 	phrase[0] = unicode.ToUpper(phrase[0])
 	return string(phrase)
+}
+
+// UpperCaseWords changes all words' first character to uppercase
+func UpperCaseWords(s string) string {
+	var stack []string
+	r := regexp.MustCompile("[^\\s]+")
+	words := r.FindAllString(s, -1)
+
+	for index := range words {
+		first := strings.ToUpper(string(words[index][0]))
+		rest := words[index][1:]
+		stack = append(stack, first + rest)
+	}
+
+	return strings.Join(stack, " ")
 }
 
 // GetLocalIpv4 returns a string of the host machine local ipv4
