@@ -14,8 +14,8 @@ const (
 	textReversed      = "gnihtyreve  dna   gnihtyna tuoba     snoitcnuf repleh fo noitcelloc A"
 	uniqueWord        = "abcdef ghijklmn"
 	notUniqueWord     = "abcdef ghijkklmn"
-	lowerWordInput 	  = "galatasaray"
-	lowerWord		  = "Galatasaray"
+	lowerWordInput    = "galatasaray"
+	lowerWord         = "Galatasaray"
 )
 
 var (
@@ -79,8 +79,14 @@ func Test_RandomString(t *testing.T) {
 	}
 }
 
-// TODO
-// func Test_RandInt(t *testing.T) {}
+func Test_RandInt(t *testing.T) {
+	result := RandInt(10, 30)
+
+	if result < 10 || result > 30 {
+		t.Error("The generated integer is out of min, max bounds")
+	}
+
+}
 
 // Tests for the DiffSlices function
 func Test_DiffSlices(t *testing.T) {
