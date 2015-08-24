@@ -10,6 +10,7 @@ import (
 	"reflect"
 	"strings"
 	"time"
+	"unicode"
 )
 
 // AllUniqueWord will return a bool value based on
@@ -135,4 +136,11 @@ func StringInSlice(str string, slice []string) bool {
 		}
 	}
 	return false
+}
+
+// UpperCaseFrist changes a string's first character to uppercase
+func UpperCaseFirst(s string) string {
+	phrase := []rune(s)
+	phrase[0] = unicode.ToUpper(phrase[0])
+	return string(phrase)
 }

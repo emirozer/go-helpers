@@ -14,6 +14,8 @@ const (
 	textReversed      = "gnihtyreve  dna   gnihtyna tuoba     snoitcnuf repleh fo noitcelloc A"
 	uniqueWord        = "abcdef ghijklmn"
 	notUniqueWord     = "abcdef ghijkklmn"
+	lowerWordInput 	  = "galatasaray"
+	lowerWord		  = "Galatasaray"
 )
 
 var (
@@ -140,6 +142,13 @@ func Test_StringInSlice(t *testing.T) {
 	}
 }
 
+// Tests for the UpperCaseFirst function
+func Test_UpperCaseFirst(t *testing.T) {
+	if result := UpperCaseFirst(lowerWordInput); result != lowerWord {
+		t.Errorf("Expected result: %q, got %q instead\n", lowerWord, result)
+	}
+}
+
 // --- --- --- Benchmarks
 
 // Benchmark for the ReverseStr function
@@ -206,6 +215,14 @@ func Benchmark_StrPermutation(b *testing.B) {
 func Benchmark_RandomString(b *testing.B) {
 	for n := 0; n < b.N; n++ {
 		RandomString(50)
+	}
+	b.StopTimer()
+}
+
+// Benchmark for the UpperCaseFirst function
+func Benchmark_UpperCaseFirst(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		UpperCaseFirst(lowerWordInput)
 	}
 	b.StopTimer()
 }
