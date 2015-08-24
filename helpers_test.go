@@ -7,15 +7,17 @@ import (
 )
 
 const (
-	separator         = "%20"
-	text              = "A collection of helper functions     about anything   and  everything"
-	textSHA1          = "e181303567270f6ee37444a21e568039d88b2267"
-	textWithSeparator = "A%20collection%20of%20helper%20functions%20about%20anything%20and%20everything"
-	textReversed      = "gnihtyreve  dna   gnihtyna tuoba     snoitcnuf repleh fo noitcelloc A"
-	uniqueWord        = "abcdef ghijklmn"
-	notUniqueWord     = "abcdef ghijkklmn"
-	lowerWordInput    = "galatasaray"
-	lowerWord         = "Galatasaray"
+	separator		= "%20"
+	text			= "A collection of helper functions     about anything   and  everything"
+	textSHA1		= "e181303567270f6ee37444a21e568039d88b2267"
+	textWithSeparator	= "A%20collection%20of%20helper%20functions%20about%20anything%20and%20everything"
+	textReversed 		= "gnihtyreve  dna   gnihtyna tuoba     snoitcnuf repleh fo noitcelloc A"
+	uniqueWord		= "abcdef ghijklmn"
+	notUniqueWord		= "abcdef ghijkklmn"
+	lowerWordInput		= "galatasaray"
+	lowerWord		= "Galatasaray"
+	upperWordsInput 	= "lorem ipsum dolor sit amet."
+	upperWords		= "Lorem Ipsum Dolor Sit Amet."
 )
 
 var (
@@ -155,6 +157,13 @@ func Test_UpperCaseFirst(t *testing.T) {
 	}
 }
 
+// Tests for the UpperCaseWords function
+func Test_UpperCaseWords(t *testing.T) {
+	if result := UpperCaseWords(upperWordsInput); result != upperWords {
+		t.Errorf("Expected result: %q, got %q instead\n", upperWords, result)
+	}
+}
+
 // --- --- --- Benchmarks
 
 // Benchmark for the ReverseStr function
@@ -229,6 +238,14 @@ func Benchmark_RandomString(b *testing.B) {
 func Benchmark_UpperCaseFirst(b *testing.B) {
 	for n := 0; n < b.N; n++ {
 		UpperCaseFirst(lowerWordInput)
+	}
+	b.StopTimer()
+}
+
+// Benchmark for the UpperCaseFirst function
+func Benchmark_UpperCaseWords(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		UpperCaseFirst(upperWordsInput)
 	}
 	b.StopTimer()
 }
