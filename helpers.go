@@ -9,10 +9,10 @@ import (
 	"net"
 	"os"
 	"reflect"
+	"regexp"
 	"strings"
 	"time"
 	"unicode"
-	"regexp"
 )
 
 // AllUniqueWord will return a bool value based on
@@ -140,7 +140,7 @@ func StringInSlice(str string, slice []string) bool {
 	return false
 }
 
-// UpperCaseFrist changes a string's first character to uppercase
+// UpperCaseFirst changes a string's first character to uppercase
 func UpperCaseFirst(s string) string {
 	phrase := []rune(s)
 	phrase[0] = unicode.ToUpper(phrase[0])
@@ -156,7 +156,7 @@ func UpperCaseWords(s string) string {
 	for index := range words {
 		first := strings.ToUpper(string(words[index][0]))
 		rest := words[index][1:]
-		stack = append(stack, first + rest)
+		stack = append(stack, first+rest)
 	}
 
 	return strings.Join(stack, " ")
