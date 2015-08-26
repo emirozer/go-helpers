@@ -173,3 +173,17 @@ func GetLocalIpv4() string {
 	}
 	return "localhost"
 }
+
+// RemoveDuplicatesFromIntSlice receives a slice of integers and iterates through them
+// eliminating duplicate items in the slice.
+func RemoveDuplicatesFromIntSlice(a []int) []int {
+	result := []int{}
+	seen := map[int]int{}
+	for _, val := range a {
+		if _, ok := seen[val]; !ok {
+			result = append(result, val)
+			seen[val] = val
+		}
+	}
+	return result
+}

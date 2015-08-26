@@ -2,29 +2,32 @@ package helpers
 
 import (
 	// "fmt"
+	"reflect"
 	"strings"
 	"testing"
 )
 
 const (
-	separator		= "%20"
-	text			= "A collection of helper functions     about anything   and  everything"
-	textSHA1		= "e181303567270f6ee37444a21e568039d88b2267"
-	textWithSeparator	= "A%20collection%20of%20helper%20functions%20about%20anything%20and%20everything"
-	textReversed 		= "gnihtyreve  dna   gnihtyna tuoba     snoitcnuf repleh fo noitcelloc A"
-	uniqueWord		= "abcdef ghijklmn"
-	notUniqueWord		= "abcdef ghijkklmn"
-	lowerWordInput		= "galatasaray"
-	lowerWord		= "Galatasaray"
-	upperWordsInput 	= "lorem ipsum dolor sit amet."
-	upperWords		= "Lorem Ipsum Dolor Sit Amet."
+	separator         = "%20"
+	text              = "A collection of helper functions     about anything   and  everything"
+	textSHA1          = "e181303567270f6ee37444a21e568039d88b2267"
+	textWithSeparator = "A%20collection%20of%20helper%20functions%20about%20anything%20and%20everything"
+	textReversed      = "gnihtyreve  dna   gnihtyna tuoba     snoitcnuf repleh fo noitcelloc A"
+	uniqueWord        = "abcdef ghijklmn"
+	notUniqueWord     = "abcdef ghijkklmn"
+	lowerWordInput    = "galatasaray"
+	lowerWord         = "Galatasaray"
+	upperWordsInput   = "lorem ipsum dolor sit amet."
+	upperWords        = "Lorem Ipsum Dolor Sit Amet."
 )
 
 var (
-	sliceIntX     = []int{46, 77, 89, 43, 3, 33, 0, 10, 95}
-	sliceIntY     = []int{5, 93, 54, 10, 48, 66, 97, 95, 46, 11, 8, 56, 72}
-	sliceIntDiffX = []int{77, 89, 43, 3, 33, 0}
-	sliceIntDiffY = []int{5, 93, 54, 48, 66, 97, 11, 8, 56, 72}
+	sliceIntX      = []int{46, 77, 89, 43, 3, 33, 0, 10, 95}
+	sliceIntY      = []int{5, 93, 54, 10, 48, 66, 97, 95, 46, 11, 8, 56, 72}
+	sliceIntDiffX  = []int{77, 89, 43, 3, 33, 0}
+	sliceIntDiffY  = []int{5, 93, 54, 48, 66, 97, 11, 8, 56, 72}
+	duplicateIntsS = []int{1, 1, 2, 2, 3, 3}
+	nonDup         = []int{1, 2, 3}
 )
 
 // --- --- --- Tests
@@ -161,6 +164,12 @@ func Test_UpperCaseFirst(t *testing.T) {
 func Test_UpperCaseWords(t *testing.T) {
 	if result := UpperCaseWords(upperWordsInput); result != upperWords {
 		t.Errorf("Expected result: %q, got %q instead\n", upperWords, result)
+	}
+}
+
+func Test_RemoveDuplicatesFromIntSlice(t *testing.T) {
+	if result := RemoveDuplicatesFromIntSlice(duplicateIntsS); reflect.DeepEqual(result, nonDup) == false {
+		t.Errorf("Cannot find expected result, %q , %q", result, nonDup)
 	}
 }
 
