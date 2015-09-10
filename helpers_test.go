@@ -16,9 +16,9 @@ const (
 	uniqueWord        = "abcdef ghijklmn"
 	notUniqueWord     = "abcdef ghijkklmn"
 	lowerWordInput    = "galatasaray"
-	lowerWord         = "Galatasaray"
-	upperWordsInput   = "lorem ipsum dolor sit amet."
-	upperWords        = "Lorem Ipsum Dolor Sit Amet."
+	upperWordOutput   = "Galatasaray"
+	lowerWordsInput   = "lorem ipsum dolor sit amet."
+	upperWordsOutput  = "Lorem Ipsum Dolor Sit Amet."
 )
 
 var (
@@ -155,15 +155,15 @@ func Test_StringInSlice(t *testing.T) {
 
 // Tests for the UpperCaseFirst function
 func Test_UpperCaseFirst(t *testing.T) {
-	if result := UpperCaseFirst(lowerWordInput); result != lowerWord {
-		t.Errorf("Expected result: %q, got %q instead\n", lowerWord, result)
+	if result := UpperCaseFirst(lowerWordInput); result != upperWordOutput {
+		t.Errorf("Expected result: %q, got %q instead\n", upperWordOutput, result)
 	}
 }
 
 // Tests for the UpperCaseWords function
 func Test_UpperCaseWords(t *testing.T) {
-	if result := UpperCaseWords(upperWordsInput); result != upperWords {
-		t.Errorf("Expected result: %q, got %q instead\n", upperWords, result)
+	if result := UpperCaseWords(lowerWordsInput); result != upperWordsOutput {
+		t.Errorf("Expected result: %q, got %q instead\n", upperWordsOutput, result)
 	}
 }
 
@@ -254,7 +254,7 @@ func Benchmark_UpperCaseFirst(b *testing.B) {
 // Benchmark for the UpperCaseFirst function
 func Benchmark_UpperCaseWords(b *testing.B) {
 	for n := 0; n < b.N; n++ {
-		UpperCaseFirst(upperWordsInput)
+		UpperCaseFirst(lowerWordsInput)
 	}
 	b.StopTimer()
 }
