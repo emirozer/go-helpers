@@ -139,7 +139,7 @@ func UpperCaseFirst(s string) string {
 	return string(phrase)
 }
 
-// UpperCaseWords changes all words' first character to uppercase
+// UpperCaseWords changes all words' first character to uppercase (Delimited by single space)
 func UpperCaseWords(s string) string {
 	var stack []string
 	r := regexp.MustCompile("[^\\s]+")
