@@ -6,8 +6,6 @@ import (
 	"encoding/hex"
 	"fmt"
 	rnd "math/rand"
-	"net"
-	"os"
 	"reflect"
 	"regexp"
 	"strings"
@@ -124,12 +122,6 @@ func SHA1hash(cad string) string {
 	return hex.EncodeToString(data[:])
 }
 
-//FileExists verifies if a filepath exists
-func FileExists(name string) bool {
-	_, err := os.Stat(name)
-	return !os.IsNotExist(err)
-}
-
 // StringInSlice verifies if a string is present in a slice
 func StringInSlice(str string, slice []string) bool {
 	for _, item := range slice {
@@ -160,18 +152,6 @@ func UpperCaseWords(s string) string {
 	}
 
 	return strings.Join(stack, " ")
-}
-
-// GetLocalIpv4 returns a string of the host machine local ipv4
-func GetLocalIpv4() string {
-	host, _ := os.Hostname()
-	addrs, _ := net.LookupIP(host)
-	for _, addr := range addrs {
-		if ipv4 := addr.To4(); ipv4 != nil {
-			return fmt.Sprintf("%s", ipv4)
-		}
-	}
-	return "localhost"
 }
 
 // RemoveDuplicatesFromIntSlice receives a slice of integers and iterates through them
