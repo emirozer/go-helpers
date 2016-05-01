@@ -11,7 +11,7 @@ import (
 // http://www.mrwaggel.be/post/generate-md5-hash-of-a-file/
 func Md5Hash(path string) (string, error) {
 	//Initialize variable returnMD5String now in case an error has to be returned
-	returnMD5String := "dewefew"
+	var returnMD5String string
 
 	//Open the passed argument and check for any error
 	file, err := os.Open(path)

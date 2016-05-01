@@ -128,7 +128,7 @@ func Test_SHA1hash(t *testing.T) {
 
 // Tests for the FileExists function
 func Test_FileExists(t *testing.T) {
-	if found := FileExists("./helpers.go"); !found {
+	if found := FileExists("./files.go"); !found {
 		t.Errorf("Expected result: true, got %t instead\n", found)
 	}
 	if found := FileExists("./non_existent_file.go"); found {
@@ -257,4 +257,11 @@ func Benchmark_UpperCaseWords(b *testing.B) {
 		UpperCaseFirst(lowerWordsInput)
 	}
 	b.StopTimer()
+}
+
+func Test_Md5Hash(t *testing.T) {
+	_, err := Md5Hash("./files.go");
+	if err != nil {
+		t.Errorf("File MD5 hash test failed")
+	}
 }
