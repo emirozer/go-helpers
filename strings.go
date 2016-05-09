@@ -88,48 +88,11 @@ func RandomString(l int) string {
 	return string(bytes)
 }
 
-// RandInt returns a random integer between the min and max you set
-func RandInt(min int, max int) int {
-	rnd.Seed(time.Now().UnixNano())
-	return min + rnd.Intn(max-min)
-}
-
-// DiffSlices takes two integer slices and returns the diff between them
-// e.g. DiffSlices(X, Y) will return the elements that are only in X
-// If an integer is present in both slices but not the same number of time,
-// it will be reflected in the result
-func DiffSlices(X, Y []int) (ret []int) {
-	m := make(map[int]int)
-
-	for _, y := range Y {
-		m[y]++
-	}
-
-	for _, x := range X {
-		if m[x] > 0 {
-			m[x]--
-			continue
-		}
-		ret = append(ret, x)
-	}
-
-	return ret
-}
 
 // SHA1hash calculates a SHA1 given a string
 func SHA1hash(cad string) string {
 	data := sha1.Sum([]byte(cad))
 	return hex.EncodeToString(data[:])
-}
-
-// StringInSlice verifies if a string is present in a slice
-func StringInSlice(str string, slice []string) bool {
-	for _, item := range slice {
-		if item == str {
-			return true
-		}
-	}
-	return false
 }
 
 // UpperCaseFirst changes a string's first character to uppercase
@@ -166,4 +129,12 @@ func RemoveDuplicatesFromIntSlice(a []int) []int {
 		}
 	}
 	return result
+}
+
+func LastNCharacters(s string, n int) string {
+	return string(s[len(s)-n:])
+}
+
+func FirstNCharacters(s string, n int) string {
+	return string(s[:n])
 }
