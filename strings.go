@@ -77,7 +77,7 @@ func PseudoUUID() (uuid string) {
 // Source: https://stackoverflow.com/questions/22892120/how-to-generate-a-random-string-of-a-fixed-length-in-golang
 func RandomString(l int) string {
 	const (
-		letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+		letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 		size    = int64(len(letters))
 	)
 	rnd.Seed(time.Now().UnixNano())
