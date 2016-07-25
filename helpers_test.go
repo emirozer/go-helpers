@@ -258,6 +258,7 @@ func Benchmark_UpperCaseWords(b *testing.B) {
 	b.StopTimer()
 }
 
+// ensuring MD5 hash doesn't throw an error, otherwise we can assume it works.
 func Test_Md5Hash(t *testing.T) {
 	_, err := Md5Hash("./files.go");
 	if err != nil {
@@ -265,12 +266,14 @@ func Test_Md5Hash(t *testing.T) {
 	}
 }
 
+// Test FirstNChars
 func Test_firstNChars(t *testing.T) {
 	if FirstNCharacters("Helllllooo World!!!!!!!", 3) != "Hel" {
 		t.Errorf("First N chars fail")
 	}
 }
 
+// Test LastNChars
 func Test_lastNChars(t *testing.T) {
 	if LastNCharacters("Helllllooo World!!!!!!!", 3) != "!!!" {
 		t.Errorf("Last N chars fail")

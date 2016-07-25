@@ -40,7 +40,7 @@ func Md5Hash(path string) (string, error) {
 }
 
 
-//FileExists verifies if a filepath exists
+// FileExists verifies if a filepath exists
 func FileExists(name string) bool {
 	_, err := os.Stat(name)
 	return !os.IsNotExist(err)

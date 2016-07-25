@@ -131,10 +131,12 @@ func RemoveDuplicatesFromIntSlice(a []int) []int {
 	return result
 }
 
+// Will return the first N chars of provided string
 func LastNCharacters(s string, n int) string {
 	return string(s[len(s)-n:])
 }
 
+// Will return the last N chars of provided string
 func FirstNCharacters(s string, n int) string {
 	return string(s[:n])
 }
