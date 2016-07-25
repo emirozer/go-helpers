@@ -264,3 +264,15 @@ func Test_Md5Hash(t *testing.T) {
 		t.Errorf("File MD5 hash test failed")
 	}
 }
+
+func Test_firstNChars(t *testing.T) {
+	if FirstNCharacters("Helllllooo World!!!!!!!", 3) != "Hel" {
+		t.Errorf("First N chars fail")
+	}
+}
+
+func Test_lastNChars(t *testing.T) {
+	if LastNCharacters("Helllllooo World!!!!!!!", 3) != "!!!" {
+		t.Errorf("Last N chars fail")
+	}
+}
