@@ -1,7 +1,6 @@
 package helpers
 
 import (
-	// "fmt"
 	"reflect"
 	"strings"
 	"testing"
@@ -128,7 +127,7 @@ func Test_SHA1hash(t *testing.T) {
 
 // Tests for the FileExists function
 func Test_FileExists(t *testing.T) {
-	if found := FileExists("./helpers.go"); !found {
+	if found := FileExists("./files.go"); !found {
 		t.Errorf("Expected result: true, got %t instead\n", found)
 	}
 	if found := FileExists("./non_existent_file.go"); found {
@@ -257,4 +256,26 @@ func Benchmark_UpperCaseWords(b *testing.B) {
 		UpperCaseFirst(lowerWordsInput)
 	}
 	b.StopTimer()
+}
+
+// ensuring MD5 hash doesn't throw an error, otherwise we can assume it works.
+func Test_Md5Hash(t *testing.T) {
+	_, err := Md5Hash("./files.go");
+	if err != nil {
+		t.Errorf("File MD5 hash test failed")
+	}
+}
+
+// Test FirstNChars
+func Test_firstNChars(t *testing.T) {
+	if FirstNCharacters("Helllllooo World!!!!!!!", 3) != "Hel" {
+		t.Errorf("First N chars fail")
+	}
+}
+
+// Test LastNChars
+func Test_lastNChars(t *testing.T) {
+	if LastNCharacters("Helllllooo World!!!!!!!", 3) != "!!!" {
+		t.Errorf("Last N chars fail")
+	}
 }
